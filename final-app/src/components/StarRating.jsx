@@ -15,5 +15,5 @@ export default function StarRating(props) {
       />
     );
   }
-  return <div className="flex justify-center items-center">{stars}</div>;
+  return <div className="flex md:justify-center items-center">{stars}</div>;
 }

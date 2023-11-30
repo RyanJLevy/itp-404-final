@@ -1,56 +1,99 @@
 {
-    "users": [],
-    "techniques": [
-      {
-        "id": 0,
-        "title": "Knee Bar",
-        "slug": "knee-bar",
-        "image": "knee-bar.png",
-        "difficulty": 3,
-        "type": ["Stability"],
-        "description": "A knee bar is a maneuver in which a climber cams their knee against a blocky, cracky, or roofy feature. This often allows the climber to hang freely without the user of one or both of their hands. This then allows them to rest in the middle of a route and regain some expended strength. Beyond recovery, a knee bar can also extend a climber's reach. Similar to a drop knee, a knee bar can work to rotate a climber's hips closer to the wall and thus extend their reach potential. Overall, this maneuver requires both leg and core strength as well as a keen awareness of the features of a given block.",
-        "tutorial_links": ["https://www.youtube.com/watch?v=XlHh2V-BFMo"]
-      },
-      {
-        "id": 1,
-        "title": "Gaston",
-        "slug": "gaston",
-        "image": "gaston.png",
-        "difficulty": 2,
-        "type": ["Handhold"],
-        "description": "Gaston description.",
-        "tutorial_links": []
-      },
-      {
-        "id": 2,
-        "title": "Crimp",
-        "slug": "crimp",
-        "image": "crimp.png",
-        "difficulty": 2,
-        "type": ["Handhold"],
-        "description": "Crimp description.",
-        "tutorial_links": []
-      },
-      {
-        "id": 3,
-        "title": "Flag",
-        "slug": "flag",
-        "image": "flag.png",
-        "difficulty": 0,
-        "type": ["Stability", "Positioning"],
-        "description": "Flag description.",
-        "tutorial_links": ["https://www.youtube.com/watch?v=jLsii8s6acM", "https://www.youtube.com/watch?v=kZiB_T_WspE"]
-      },
-      {
-        "id": 4,
-        "title": "Drop Knee",
-        "slug": "drop-knee",
-        "image": "drop-knee.png",
-        "difficulty": 1,
-        "type": ["Stability", "Positioning", "Footwork"],
-        "description": "Drop knee description.",
-        "tutorial_links": []
-      }
+  "users": [
+    {
+      "id": 0,
+      "username": "climberpro",
+      "password": "sakfdsjkfjdljsdl11213"
+    }
+  ],
+  "techniques": [
+    {
+      "id": 0,
+      "title": "Knee Bar",
+      "slug": "knee-bar",
+      "image": "knee-bar.png",
+      "difficulty": 3,
+      "type": [
+        "Stability"
       ],
-    "comments": []
+      "description": "A knee bar is a maneuver in which a climber cams their knee against a blocky, cracky, or roofy feature. This often allows the climber to hang freely without the use of one or both of their hands. This then allows them to rest in the middle of a route and regain some expended strength. Beyond recovery, a knee bar can also extend a climber's reach. Similar to a drop knee, a knee bar can work to rotate a climber's hips closer to the wall and thus extend their reach potential. Overall, this maneuver requires both leg and core strength as well as a keen awareness of the features of a given block.",
+      "tutorial_links": [
+        "https://www.youtube.com/watch?v=XlHh2V-BFMo"
+      ]
+    },
+    {
+      "id": 1,
+      "title": "Gaston",
+      "slug": "gaston",
+      "image": "gaston.png",
+      "difficulty": 2,
+      "type": [
+        "Handhold"
+      ],
+      "description": "Gaston description.",
+      "tutorial_links": []
+    },
+    {
+      "id": 2,
+      "title": "Crimp",
+      "slug": "crimp",
+      "image": "crimp.png",
+      "difficulty": 2,
+      "type": [
+        "Handhold"
+      ],
+      "description": "Crimp description.",
+      "tutorial_links": []
+    },
+    {
+      "id": 3,
+      "title": "Flag",
+      "slug": "flag",
+      "image": "flag.png",
+      "difficulty": 0,
+      "type": [
+        "Stability",
+        "Positioning"
+      ],
+      "description": "Flag description.",
+      "tutorial_links": [
+        "https://www.youtube.com/watch?v=jLsii8s6acM",
+        "https://www.youtube.com/watch?v=kZiB_T_WspE"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Drop Knee",
+      "slug": "drop-knee",
+      "image": "drop-knee.png",
+      "difficulty": 1,
+      "type": [
+        "Stability",
+        "Positioning",
+        "Footwork"
+      ],
+      "description": "Drop knee description.",
+      "tutorial_links": []
+    }
+  ],
+  "comments": [
+    {
+      "id": 0,
+      "techniqueId": 0,
+      "body": "One of my all time faves to bust out, always so satisfying!",
+      "userId": 0
+    },
+    {
+      "techniqueId": 0,
+      "body": "Test comment",
+      "userId": 0,
+      "id": 1
+    },
+    {
+      "techniqueId": 1,
+      "body": "Hard move but always so rewarding",
+      "userId": 0,
+      "id": 2
+    }
+  ]
 }

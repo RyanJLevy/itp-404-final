@@ -1,6 +1,10 @@
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRotateBack,
+  faBackward,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import TechniqueCard from "../components/TechniqueCard";
 
@@ -8,27 +12,43 @@ export default function Home() {
   const techniques = useLoaderData();
   const [searchResults, setSearchResults] = useState(techniques);
   const [searchTerm, setSearchTerm] = useState("");
+  const [difficultyFilter, setDifficultyFilter] = useState("");
+  const [searchSubmitted, setSearchSubmitted] = useState(false);
 
-  const handleTechniqueFilter = (partialSearchTerm) => {
-    const filteredTechinques = techniques.filter((technique) =>
-      technique.title.toLowerCase().includes(partialSearchTerm.toLowerCase())
-    );
-    setSearchResults(filteredTechinques);
-  };
+  useEffect(() => {
+    document.title = "ClimbRepo | Home";
+  }, []);
 
-  const handleInputChange = (event) => {
-    setSearchTerm(event.target.value);
-    handleTechniqueFilter(event.target.value);
+  const handleTechniqueFilter = () => {
+    let filteredTechniques = techniques;
+    if (difficultyFilter !== "") {
+      console.log(difficultyFilter);
+      filteredTechniques = filteredTechniques.filter(
+        (technique) => technique.difficulty.toString() === difficultyFilter
+      );
+    }
+    if (searchTerm !== "") {
+      filteredTechniques = filteredTechniques.filter((technique) =>
+        technique.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    setSearchResults(filteredTechniques);
   };
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    if (!searchTerm.length) {
-      setSearchResults(techniques);
+    if (searchTerm === "" && difficultyFilter === "") {
       return;
     }
-    handleTechniqueFilter(searchTerm);
+    handleTechniqueFilter();
+    setSearchSubmitted(true);
+  };
+
+  const resetSearchResults = () => {
     setSearchTerm("");
+    setDifficultyFilter("");
+    setSearchSubmitted(false);
+    setSearchResults(techniques);
   };
 
   return (
@@ -40,7 +60,7 @@ export default function Home() {
       />
 
       <form
-        className="w-full flex items-center justify-between mb-4 px-20 md:px-40 py-10 border-b border-b-primary"
+        className="w-full flex flex-col md:flex-row md:items-center justify-between mb-4 px-20 md:px-40 py-10 border-b border-b-primary"
         onSubmit={handleSearchSubmit}
       >
         <div className="flex justify-center items-center shadow-md shadow-slate-300 border border-slate-300 rounded-md lg:w-[35%]">
@@ -48,7 +68,7 @@ export default function Home() {
             className="px-4 py-2 rounded-tl-md rounded-bl-md w-full"
             placeholder="Technique name..."
             value={searchTerm}
-            onChange={handleInputChange}
+            onChange={(event) => setSearchTerm(event.target.value)}
           ></input>
           <button
             className="bg-primary p-3 flex justify-center items-center text-white rounded-tr-md rounded-br-md"
@@ -56,6 +76,48 @@ export default function Home() {
           >
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
+        </div>
+        {/* Filters */}
+        <div className="flex md:items-center space-x-4 mt-4 md:mt-0">
+          {searchSubmitted && (
+            <>
+              <div className="hidden md:flex justify-center items-center space-x-1">
+                <FontAwesomeIcon
+                  className="text-slate-600"
+                  icon={faArrowRotateBack}
+                />
+                <button
+                  className="text-slate-600 underline"
+                  type={"button"}
+                  onClick={resetSearchResults}
+                >
+                  View all techniques
+                </button>
+              </div>
+              <button
+                type="button"
+                className="md:hidden"
+                onClick={resetSearchResults}
+                title="View all techniques"
+              >
+                <FontAwesomeIcon
+                  className="text-slate-600"
+                  icon={faArrowRotateBack}
+                />
+              </button>
+            </>
+          )}
+          <select
+            value={difficultyFilter}
+            onChange={(event) => setDifficultyFilter(event.target.value)}
+            className="shadow-md shadow-slate-300 border border-slate-300 rounded-md px-4 py-2"
+          >
+            <option value={""}>--- Select Difficulty ---</option>
+            <option value={"0"}>0 - Beginner</option>
+            <option value={"1"}>1 - Intermediate</option>
+            <option value={"2"}>2 - Advanced</option>
+            <option value={"3"}>3 - Expert</option>
+          </select>
         </div>
       </form>
 

@@ -5,7 +5,7 @@ export function fetchAllTechniques() {
 }
 
 export function fetchTechniqueBySlug(techniqueSlug) {
-  return fetch(`${baseUrl}/techniques`)
+  return fetch(`${baseUrl}/techniques?_embed=comments`)
     .then((response) => response.json())
     .then((data) =>
       data.filter((technique) => technique.slug === techniqueSlug)
