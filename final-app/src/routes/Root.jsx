@@ -69,7 +69,10 @@ export default function Root() {
           rel="noreferrer"
           target="_blank"
         >
-          <FontAwesomeIcon className="text-white" icon={faGithub} />
+          <FontAwesomeIcon
+            className="text-white border-l border-l-white pl-4"
+            icon={faGithub}
+          />
         </a>
       </footer>
     </main>

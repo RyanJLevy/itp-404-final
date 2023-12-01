@@ -101,7 +101,7 @@ export default function Details() {
           </div>
           <button
             type="button"
-            className="m-0 p-0"
+            className="p-2 border border-slate-300 rounded-md"
             onClick={handleSaveTechniqueToggle}
           >
             <FontAwesomeIcon

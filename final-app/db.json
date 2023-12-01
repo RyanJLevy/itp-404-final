@@ -45,7 +45,9 @@
         "Handhold"
       ],
       "description": "Cool name huh? A gaston is a maneuver in which a climber will use their arms and hands to push outwards into a pair of handholds. This move is handhold agnostic in that it can be performed on almost any type of handhold—slopers, crimps, jugs, you name it. A gaston manevuer can be identified rather by the position of two holds relative to each other. If the positive edges of the holds are facing inwards (towards each other) then a gaston will most likely come in handy. This move is quite shoulder intensive and requires apt foot placement to lighten the load therein.",
-      "tutorial_links": []
+      "tutorial_links": [
+        "https://www.youtube.com/watch?v=GH7au8UIdSA"
+      ]
     },
     {
       "id": 2,
@@ -56,8 +58,10 @@
       "type": [
         "Handhold"
       ],
-      "description": "Crimp description.",
-      "tutorial_links": []
+      "description": "Nope, not \"cramp\". But without the proper technique and grip strength training, attempting this maneuver can result in one (or worse). Both a noun and a verb, \"crimp\" can refer to a type of handhold as well as the act of gripping said handhold. Crimp handholds are characteristically smaller than most other types of handholds, sometimes offering only tens of millimeters of grippable surface area. The crimp maneuver allows climbers to utilize such handholds as they would a jug. There are a few ways that a climber can crimp, delineated by small adjustments in finger placement and bends in the knuckles. All crimps, however, recruit heavily upon finger and hand tendon strength.\nMost modern gyms will display what is called a \"hangboard\". It is usually mounted to a wall or overhang and features one, or several, incut pockets. These pockets are meant to simulate crimp handholds, and thus allow climbers to train their crimp technique away from the wall.",
+      "tutorial_links": [
+        "https://www.youtube.com/watch?v=t83EQqcDz6Y"
+      ]
     },
     {
       "id": 3,
@@ -86,8 +90,10 @@
         "Positioning",
         "Footwork"
       ],
-      "description": "Drop knee description.",
-      "tutorial_links": []
+      "description": "Twist those hips, baby! The drop knee is one of those maneuvers that can send your knee to the joint cemetery if you aren't careful. However, it's also another one of those tools that has to be in a climber's tool belt if they want to progress in their climbing. The move itself is aptly named as it is characterized by a climber twisting their hips perpendicular to the wall face and dropping their knee. The resulting silhouette should look almost like a lunge (of varying depths). As previously mentioned, this maneuver works to rotate one side of a climber's hips closer to the wall which, in turn, gives the arm on that same side a necessary boost in reach distance. The drop knee requires both hip and knee flexibility in order to safely and successfully execute.",
+      "tutorial_links": [
+        "https://www.youtube.com/watch?v=U0v9xxqEjfY"
+      ]
     }
   ],
   "comments": [
