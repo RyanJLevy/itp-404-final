@@ -3,6 +3,7 @@ import StarRating from "../components/StarRating";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faBookmark,
   faCrown,
   faPlay,
   faTrash,
@@ -11,12 +12,15 @@ import {
 import { deleteComment, postComment } from "../api/comments";
 import { ToastContainer, toast } from "react-toastify";
 import { useSessionStorage } from "@uidotdev/usehooks";
+import { fetchSavedByUserId, updateUserSaved } from "../api/saved";
 
 export default function Details() {
   const [techniqueData] = useLoaderData();
   const [userComment, setUserComment] = useState("");
   const [allComments, setAllComments] = useState(techniqueData.comments);
   const [userId, _] = useSessionStorage("userId", -1);
+  const [techniqueSaved, setTechniqueSaved] = useState(false);
+  const [userSavedTechniques, setUserSavedTechniques] = useState([]); // Currently logged in user's saved techniques
 
   const handleCommentSubmit = async (event) => {
     event.preventDefault();
@@ -46,19 +50,66 @@ export default function Details() {
     });
   };
 
+  const handleSaveTechniqueToggle = async () => {
+    if (userId === -1) {
+      toast.warn("You must be signed in to save a technique!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
+    let savedData = userSavedTechniques;
+    let toastMessage = "";
+    if (techniqueSaved) {
+      savedData = savedData.filter((id) => id !== techniqueData.id);
+      toastMessage = "Technique successfully unsaved.";
+    } else {
+      savedData.push(techniqueData.id);
+      toastMessage = "Technique successfully saved.";
+    }
+    const response = await updateUserSaved(userId, savedData);
+    toast.success(toastMessage, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+    setUserSavedTechniques(response);
+    setTechniqueSaved((prev) => !prev);
+  };
+
   useEffect(() => {
     document.title = `ClimbRepo | ${techniqueData.title} - Details`;
+
+    const checkSavedTechnique = async () => {
+      const saved = await fetchSavedByUserId(userId);
+      setUserSavedTechniques(saved);
+      setTechniqueSaved(saved.includes(techniqueData.id));
+    };
+
+    if (userId !== -1) {
+      checkSavedTechnique();
+    }
   }, []);
 
   return (
-    <main className="py-32 px-20 md:px-40">
+    <main className="py-32 px-10 md:px-40">
       <section className="mb-10 pb-10 border-b border-b-primary">
-        <div className="flex flex-col md:flex-row md:items-center md:space-x-4 mb-8">
-          <h1 className="text-5xl">{techniqueData.title} </h1>
-          <h2 className="text-dark-grey text-lg">
-            /{techniqueData.type.join(", ")}/
-          </h2>
-          <StarRating rating={techniqueData.difficulty} size={"1x"} />
+        <div className="flex justify-between items-center mb-8">
+          <div className="flex flex-col md:flex-row md:items-center md:space-x-4">
+            <h1 className="text-5xl">{techniqueData.title} </h1>
+            <h2 className="text-dark-grey text-lg">
+              /{techniqueData.type.join(", ")}/
+            </h2>
+            <StarRating rating={techniqueData.difficulty} size={"1x"} />
+          </div>
+          <button
+            type="button"
+            className="m-0 p-0"
+            onClick={handleSaveTechniqueToggle}
+          >
+            <FontAwesomeIcon
+              className={techniqueSaved ? "text-secondary" : "text-slate-300"}
+              icon={faBookmark}
+              title={techniqueSaved ? "Unsave technique" : "Save technique"}
+            />
+          </button>
         </div>
         <div className="flex flex-col md:flex-row md:justify-between">
           <p className="mb-4 md:max-w-[50%]">{techniqueData.description}</p>

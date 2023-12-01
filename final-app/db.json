@@ -3,11 +3,20 @@
     {
       "username": "climberjoe",
       "password": "test",
-      "id": 1
+      "id": 1,
+      "saved": [
+        1,
+        0,
+        3
+      ]
     },
     {
-      "username": "testaccount",
+      "username": "admin",
       "password": "test",
+      "saved": [
+        3,
+        0
+      ],
       "id": 2
     }
   ],
@@ -35,7 +44,7 @@
       "type": [
         "Handhold"
       ],
-      "description": "Gaston description.",
+      "description": "Cool name huh? A gaston is a maneuver in which a climber will use their arms and hands to push outwards into a pair of handholds. This move is handhold agnostic in that it can be performed on almost any type of handhold—slopers, crimps, jugs, you name it. A gaston manevuer can be identified rather by the position of two holds relative to each other. If the positive edges of the holds are facing inwards (towards each other) then a gaston will most likely come in handy. This move is quite shoulder intensive and requires apt foot placement to lighten the load therein.",
       "tutorial_links": []
     },
     {
@@ -60,7 +69,7 @@
         "Stability",
         "Positioning"
       ],
-      "description": "Flag description.",
+      "description": "All hail the secret formula for next level climbing, the flag. This maneuver can be the greatest tool in a climber's toolbelt and is really quite simple to perform! Flags can come in a few different flavors, but they ultimately all share a common basic structure. Given that a climber has one foot planted on a foothold, they can then place/press their other foot into free space on the wall. Why not just place the other foot onto another foothold? As a climber progress up the grades, they will notice that footholds tend to become less positive and more sparse. Thus, another foothold may not be readily available. Placing or pressing their foot into open space on the wall (ie performing a flag) can allow a climber to generate a similar body tension that a foothold would give them.",
       "tutorial_links": [
         "https://www.youtube.com/watch?v=jLsii8s6acM",
         "https://www.youtube.com/watch?v=kZiB_T_WspE"
@@ -83,16 +92,10 @@
   ],
   "comments": [
     {
-      "techniqueId": 0,
-      "body": "Hello",
-      "userId": 1,
-      "id": 1
-    },
-    {
       "techniqueId": 3,
-      "body": "No better feeling than a sick flag on an overhang!",
-      "userId": 1,
-      "id": 3
+      "body": "The best move to know imo",
+      "userId": 2,
+      "id": 1
     }
   ]
 }

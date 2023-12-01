@@ -3,6 +3,9 @@ import NavigationLink from "../components/NavigationLink";
 import { useSessionStorage } from "@uidotdev/usehooks";
 import { useState } from "react";
 import LoginModal from "../components/LoginModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHamburger } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 export default function Root() {
   const [userId, setUserId] = useSessionStorage("userId", -1);
@@ -17,13 +20,15 @@ export default function Root() {
             Climb<span className="text-primary">Repo</span>
           </h1>
         </NavLink>
-        <div className="flex justify-center items-center space-x-5">
+        <div className="hidden md:flex justify-center items-center space-x-5">
           <NavigationLink to={"/"}>Home</NavigationLink>
-          <NavigationLink to={"/saved"}>Saved</NavigationLink>
+          <NavigationLink to={`/saved/${userId === -1 ? "guest" : userId}`}>
+            Saved
+          </NavigationLink>
           <NavigationLink to={"/profile"}>Profile</NavigationLink>
           {userId === -1 ? (
             <button
-              className="text-sm rounded-sm bg-secondary hover:bg-dark-secondary text-white py-2 px-3"
+              className="text-sm rounded-sm bg-primary hover:bg-dark-primary text-white py-2 px-3"
               type="button"
               onClick={() => setLoginModalOpen(true)}
             >
@@ -39,6 +44,14 @@ export default function Root() {
             </button>
           )}
         </div>
+        <div className="flex justify-center items-center md:hidden">
+          <button>
+            <FontAwesomeIcon
+              className="text-secondary hover:text-dark-secondary"
+              icon={faHamburger}
+            />
+          </button>
+        </div>
       </nav>
       {loginModalOpen && (
         <LoginModal
@@ -49,8 +62,15 @@ export default function Root() {
 
       <Outlet />
 
-      <footer className="bg-dark-primary flex justify-center items-center w-full p-6 absolute bottom-0 left-0">
+      <footer className="bg-dark-primary flex justify-center items-center w-full p-6 absolute bottom-0 left-0 space-x-4">
         <p className="text-white">Ryan Levy © 2023</p>
+        <a
+          href="https://github.com/RyanJLevy/itp-404-final/tree/main"
+          rel="noreferrer"
+          target="_blank"
+        >
+          <FontAwesomeIcon className="text-white" icon={faGithub} />
+        </a>
       </footer>
     </main>
   );

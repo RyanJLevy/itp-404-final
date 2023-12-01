@@ -9,7 +9,7 @@ export default function LoginModal(props) {
   const [password, setPassword] = useState("");
   const [isLogin, setIsLogin] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-  const [userId, setUserId] = useSessionStorage("userId", -1);
+  const [_, setUserId] = useSessionStorage("userId", -1);
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();

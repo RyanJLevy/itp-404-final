@@ -8,6 +8,9 @@ import ErrorBoundary from "./routes/ErrorBoundary";
 import Home from "./routes/Home";
 import { fetchAllTechniques, fetchTechniqueBySlug } from "./api/techniques";
 import Details from "./routes/Details";
+import Saved from "./routes/Saved";
+import Profile from "./routes/Profile";
+import { fetchSavedTechniquesByUserId } from "./api/saved";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +31,20 @@ const router = createBrowserRouter([
         loader({ params }) {
           return fetchTechniqueBySlug(params.techniqueSlug);
         },
+      },
+      {
+        path: "/saved/:userId",
+        element: <Saved />,
+        loader({ params }) {
+          if (params.userId === "guest") {
+            return null;
+          }
+          return fetchSavedTechniquesByUserId(params.userId);
+        },
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },

@@ -14,7 +14,7 @@ export async function findUserByUsernameAndPassword(username, password) {
 export function createUser(userData) {
   return fetch(`${baseUrl}/users`, {
     method: "POST",
-    body: JSON.stringify(userData),
+    body: JSON.stringify({ ...userData, saved: [] }),
     headers: {
       "Content-Type": "application/json",
     },
