@@ -1,9 +1,14 @@
 {
   "users": [
     {
-      "id": 0,
-      "username": "climberpro",
-      "password": "sakfdsjkfjdljsdl11213"
+      "username": "climberjoe",
+      "password": "test",
+      "id": 1
+    },
+    {
+      "username": "testaccount",
+      "password": "test",
+      "id": 2
     }
   ],
   "techniques": [
@@ -78,22 +83,16 @@
   ],
   "comments": [
     {
-      "id": 0,
       "techniqueId": 0,
-      "body": "One of my all time faves to bust out, always so satisfying!",
-      "userId": 0
-    },
-    {
-      "techniqueId": 0,
-      "body": "Test comment",
-      "userId": 0,
+      "body": "Hello",
+      "userId": 1,
       "id": 1
     },
     {
-      "techniqueId": 1,
-      "body": "Hard move but always so rewarding",
-      "userId": 0,
-      "id": 2
+      "techniqueId": 3,
+      "body": "No better feeling than a sick flag on an overhang!",
+      "userId": 1,
+      "id": 3
     }
   ]
 }

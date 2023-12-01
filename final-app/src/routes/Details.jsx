@@ -2,24 +2,48 @@ import { useLoaderData } from "react-router-dom";
 import StarRating from "../components/StarRating";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay, faUser } from "@fortawesome/free-solid-svg-icons";
-import { postComment } from "../api/comments";
+import {
+  faCrown,
+  faPlay,
+  faTrash,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
+import { deleteComment, postComment } from "../api/comments";
+import { ToastContainer, toast } from "react-toastify";
+import { useSessionStorage } from "@uidotdev/usehooks";
 
 export default function Details() {
   const [techniqueData] = useLoaderData();
   const [userComment, setUserComment] = useState("");
   const [allComments, setAllComments] = useState(techniqueData.comments);
+  const [userId, _] = useSessionStorage("userId", -1);
 
   const handleCommentSubmit = async (event) => {
     event.preventDefault();
+    if (!userComment.trim().length) {
+      return;
+    }
     const commentData = {
       techniqueId: techniqueData.id,
       body: userComment.trim(),
-      userId: 0, // Placeholder
+      userId: userId,
     };
     const newComment = await postComment(commentData);
     setAllComments((prev) => [...prev, newComment]);
     setUserComment("");
+    toast.success("Comment successfully posted.", {
+      position: toast.POSITION.BOTTOM_LEFT,
+    });
+  };
+
+  const handleCommentDelete = async (commentData) => {
+    await deleteComment(commentData);
+    setAllComments((prev) =>
+      prev.filter((comment) => comment.id !== commentData.id)
+    );
+    toast.success("Comment successfully deleted.", {
+      position: toast.POSITION.BOTTOM_LEFT,
+    });
   };
 
   useEffect(() => {
@@ -63,9 +87,25 @@ export default function Details() {
         <h1 className="text-3xl mb-4">Comments</h1>
         {allComments.length ? (
           allComments.map((comment) => (
-            <div className="flex items-center space-x-2 rounded-md border border-dashed border-slate-300 p-4 my-2">
-              <FontAwesomeIcon icon={faUser} />
-              <p>{comment.body}</p>
+            <div
+              key={comment.id}
+              className="flex items-center justify-between rounded-md border border-dashed border-slate-300 p-4 my-2"
+            >
+              <div className="flex items-center space-x-2">
+                <FontAwesomeIcon
+                  icon={comment.userId === userId ? faCrown : faUser}
+                />
+                <p>{comment.body}</p>
+              </div>
+              {comment.userId === userId && (
+                <button
+                  type="button"
+                  className=" text-secondary hover:text-dark-secondary"
+                  onClick={() => handleCommentDelete(comment)}
+                >
+                  <FontAwesomeIcon icon={faTrash} />
+                </button>
+              )}
             </div>
           ))
         ) : (
@@ -74,22 +114,33 @@ export default function Details() {
           </p>
         )}
       </section>
-      <form onSubmit={handleCommentSubmit}>
-        <label htmlFor="user-comment" className="text-xl">
-          Add Comment
-        </label>
-        <textarea
-          placeholder="Write comment here..."
-          className="border-slate-400 border rounded-md px-2 py-1 w-full my-4"
-          id="user-comment"
-          rows={3}
-          value={userComment}
-          onChange={(e) => setUserComment(e.target.value)}
-        ></textarea>
-        <button className="rounded-md text-white bg-primary p-4" type="submit">
-          Submit
-        </button>
-      </form>
+      {userId !== -1 ? (
+        <form onSubmit={handleCommentSubmit}>
+          <label htmlFor="user-comment" className="text-xl">
+            Add Comment
+          </label>
+          <textarea
+            placeholder="Write comment here..."
+            className="border-slate-400 border rounded-md px-2 py-1 w-full my-4"
+            id="user-comment"
+            rows={3}
+            value={userComment}
+            onChange={(e) => setUserComment(e.target.value)}
+          ></textarea>
+          <button
+            className="rounded-md text-white bg-primary hover:bg-dark-primary p-4"
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+      ) : (
+        <p className="text-slate-500 italic">
+          You must be logged in in order to comment.
+        </p>
+      )}
+
+      <ToastContainer />
     </main>
   );
 }

@@ -1,16 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import reportWebVitals from "./reportWebVitals";
+import "react-toastify/dist/ReactToastify.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Root from "./routes/Root";
 import ErrorBoundary from "./routes/ErrorBoundary";
 import Home from "./routes/Home";
-import {
-  fetchAllTechniques,
-  fetchTechniqueById,
-  fetchTechniqueBySlug,
-} from "./api/techniques";
+import { fetchAllTechniques, fetchTechniqueBySlug } from "./api/techniques";
 import Details from "./routes/Details";
 
 const router = createBrowserRouter([

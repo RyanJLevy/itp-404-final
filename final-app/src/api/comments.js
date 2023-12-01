@@ -9,3 +9,9 @@ export function postComment(commentData) {
     },
   }).then((response) => response.json());
 }
+
+export function deleteComment(commentData) {
+  return fetch(`${baseUrl}/comments/${commentData.id}`, {
+    method: "DELETE",
+  });
+}

@@ -60,7 +60,7 @@ export default function Home() {
       />
 
       <form
-        className="w-full flex flex-col md:flex-row md:items-center justify-between mb-4 px-20 md:px-40 py-10 border-b border-b-primary"
+        className="w-full flex flex-col md:flex-row md:items-center justify-between mb-4 px-20 md:px-40 py-10 border-b border-b-secondary"
         onSubmit={handleSearchSubmit}
       >
         <div className="flex justify-center items-center shadow-md shadow-slate-300 border border-slate-300 rounded-md lg:w-[35%]">
@@ -71,7 +71,7 @@ export default function Home() {
             onChange={(event) => setSearchTerm(event.target.value)}
           ></input>
           <button
-            className="bg-primary p-3 flex justify-center items-center text-white rounded-tr-md rounded-br-md"
+            className="bg-secondary p-3 flex justify-center items-center text-white rounded-tr-md rounded-br-md"
             type="submit"
           >
             <FontAwesomeIcon icon={faMagnifyingGlass} />
