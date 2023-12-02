@@ -1,6 +1,5 @@
 import {
   faArrowRotateBack,
-  faBackward,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,9 +26,9 @@ export default function Home() {
         (technique) => technique.difficulty.toString() === difficultyFilter
       );
     }
-    if (searchTerm !== "") {
+    if (searchTerm.trim() !== "") {
       filteredTechniques = filteredTechniques.filter((technique) =>
-        technique.title.toLowerCase().includes(searchTerm.toLowerCase())
+        technique.title.toLowerCase().includes(searchTerm.trim().toLowerCase())
       );
     }
     setSearchResults(filteredTechniques);

@@ -1,9 +1,14 @@
 import { useLoaderData } from "react-router-dom";
 import TechniqueCard from "../components/TechniqueCard";
+import { useEffect } from "react";
 
 export default function Saved() {
   const loaderData = useLoaderData();
-  console.log(loaderData);
+
+  useEffect(() => {
+    document.title = "ClimbRepo | Saved Techniques";
+  }, []);
+
   return (
     <main className="py-32 px-20 md:px-40">
       <h1 className="text-5xl">Saved Techniques</h1>

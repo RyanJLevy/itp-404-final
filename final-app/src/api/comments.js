@@ -1,6 +1,6 @@
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
-export function postComment(commentData) {
+export async function postComment(commentData) {
   return fetch(`${baseUrl}/comments`, {
     method: "POST",
     body: JSON.stringify(commentData),
@@ -10,7 +10,7 @@ export function postComment(commentData) {
   }).then((response) => response.json());
 }
 
-export function deleteComment(commentData) {
+export async function deleteComment(commentData) {
   return fetch(`${baseUrl}/comments/${commentData.id}`, {
     method: "DELETE",
   });

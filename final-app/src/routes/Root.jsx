@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import NavigationLink from "../components/NavigationLink";
 import { useSessionStorage } from "@uidotdev/usehooks";
 import { useState } from "react";
@@ -10,6 +10,12 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 export default function Root() {
   const [userId, setUserId] = useSessionStorage("userId", -1);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    setUserId(-1);
+    navigate("/");
+  };
 
   return (
     <main className="bg-background relative min-h-[100vh]">
@@ -38,7 +44,7 @@ export default function Root() {
             <button
               className="text-sm rounded-sm bg-secondary hover:bg-dark-secondary text-white py-2 px-3"
               type="button"
-              onClick={() => setUserId(-1)}
+              onClick={handleLogoutClick}
             >
               Logout
             </button>

@@ -5,9 +5,9 @@
       "password": "test",
       "id": 1,
       "saved": [
-        1,
-        0,
-        3
+        3,
+        2,
+        0
       ]
     },
     {
@@ -98,9 +98,10 @@
   ],
   "comments": [
     {
-      "techniqueId": 3,
-      "body": "The best move to know imo",
-      "userId": 2,
+      "techniqueId": 0,
+      "body": "KNEEEE BAAAARRRR",
+      "userId": 1,
+      "username": "climberjoe",
       "id": 1
     }
   ]

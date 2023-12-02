@@ -13,6 +13,7 @@ import { deleteComment, postComment } from "../api/comments";
 import { ToastContainer, toast } from "react-toastify";
 import { useSessionStorage } from "@uidotdev/usehooks";
 import { fetchSavedByUserId, updateUserSaved } from "../api/saved";
+import { fetchUserById } from "../api/users";
 
 export default function Details() {
   const [techniqueData] = useLoaderData();
@@ -27,10 +28,12 @@ export default function Details() {
     if (!userComment.trim().length) {
       return;
     }
+    const { username } = await fetchUserById(userId);
     const commentData = {
       techniqueId: techniqueData.id,
       body: userComment.trim(),
       userId: userId,
+      username: username,
     };
     const newComment = await postComment(commentData);
     setAllComments((prev) => [...prev, newComment]);
@@ -85,8 +88,10 @@ export default function Details() {
 
     if (userId !== -1) {
       checkSavedTechnique();
+    } else {
+      setTechniqueSaved(false);
     }
-  }, []);
+  }, [userId]);
 
   return (
     <main className="py-32 px-10 md:px-40">
@@ -144,8 +149,10 @@ export default function Details() {
             >
               <div className="flex items-center space-x-2">
                 <FontAwesomeIcon
+                  className="text-slate-500"
                   icon={comment.userId === userId ? faCrown : faUser}
                 />
+                <p className="text-slate-500">{comment.username}</p>
                 <p>{comment.body}</p>
               </div>
               {comment.userId === userId && (
@@ -153,6 +160,7 @@ export default function Details() {
                   type="button"
                   className=" text-secondary hover:text-dark-secondary"
                   onClick={() => handleCommentDelete(comment)}
+                  title="Delete comment"
                 >
                   <FontAwesomeIcon icon={faTrash} />
                 </button>
