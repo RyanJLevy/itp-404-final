@@ -33,3 +33,9 @@ export async function fetchUserById(userId) {
     response.json()
   );
 }
+
+export async function fetchUserInfoById(userId) {
+  return fetch(`${baseUrl}/users/${userId}?_embed=comments`).then((response) =>
+    response.json()
+  );
+}

@@ -11,6 +11,7 @@ import Details from "./routes/Details";
 import Saved from "./routes/Saved";
 import Profile from "./routes/Profile";
 import { fetchSavedTechniquesByUserId } from "./api/saved";
+import { fetchUserInfoById } from "./api/users";
 
 const router = createBrowserRouter([
   {
@@ -43,8 +44,14 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/profile",
+        path: "/profile/:userId",
         element: <Profile />,
+        loader({ params }) {
+          if (params.userId === "guest") {
+            return null;
+          }
+          return fetchUserInfoById(params.userId);
+        },
       },
     ],
   },

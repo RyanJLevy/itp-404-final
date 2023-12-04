@@ -12,8 +12,8 @@ export default function Saved() {
   return (
     <main className="py-32 px-20 md:px-40">
       <h1 className="text-5xl">Saved Techniques</h1>
-      <section className="flex flex-col items-center py-5">
-        {loaderData ? (
+      {loaderData ? (
+        <section className="flex flex-col items-center py-5">
           <div className="flex items-center md:items-start flex-col md:flex-row w-full flex-wrap">
             {loaderData.map((technique) => (
               <TechniqueCard
@@ -26,12 +26,12 @@ export default function Saved() {
               />
             ))}
           </div>
-        ) : (
-          <p className="text-slate-500 italic my-6">
-            You must log in to see your saved techniques!
-          </p>
-        )}
-      </section>
+        </section>
+      ) : (
+        <p className="text-slate-500 italic my-6">
+          You must log in to see your saved techniques!
+        </p>
+      )}
     </main>
   );
 }

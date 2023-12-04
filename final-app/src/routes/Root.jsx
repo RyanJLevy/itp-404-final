@@ -31,7 +31,9 @@ export default function Root() {
           <NavigationLink to={`/saved/${userId === -1 ? "guest" : userId}`}>
             Saved
           </NavigationLink>
-          <NavigationLink to={"/profile"}>Profile</NavigationLink>
+          <NavigationLink to={`/profile/${userId === -1 ? "guest" : userId}`}>
+            Profile
+          </NavigationLink>
           {userId === -1 ? (
             <button
               className="text-sm rounded-sm bg-primary hover:bg-dark-primary text-white py-2 px-3"
