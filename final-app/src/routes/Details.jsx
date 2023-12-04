@@ -2,18 +2,13 @@ import { useLoaderData } from "react-router-dom";
 import StarRating from "../components/StarRating";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBookmark,
-  faCrown,
-  faPlay,
-  faTrash,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBookmark, faPlay } from "@fortawesome/free-solid-svg-icons";
 import { deleteComment, postComment } from "../api/comments";
 import { ToastContainer, toast } from "react-toastify";
 import { useSessionStorage } from "@uidotdev/usehooks";
 import { fetchSavedByUserId, updateUserSaved } from "../api/saved";
 import { fetchUserById } from "../api/users";
+import UserComment from "../components/UserComment";
 
 export default function Details() {
   const [techniqueData] = useLoaderData();
@@ -143,29 +138,14 @@ export default function Details() {
         <h1 className="text-3xl mb-4">Comments</h1>
         {allComments.length ? (
           allComments.map((comment) => (
-            <div
+            <UserComment
               key={comment.id}
-              className="flex items-center justify-between rounded-md border border-dashed border-slate-300 p-4 my-2"
-            >
-              <div className="flex items-center space-x-2">
-                <FontAwesomeIcon
-                  className="text-slate-500"
-                  icon={comment.userId === userId ? faCrown : faUser}
-                />
-                <p className="text-slate-500">{comment.username}</p>
-                <p>{comment.body}</p>
-              </div>
-              {comment.userId === userId && (
-                <button
-                  type="button"
-                  className=" text-secondary hover:text-dark-secondary"
-                  onClick={() => handleCommentDelete(comment)}
-                  title="Delete comment"
-                >
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-              )}
-            </div>
+              loggedInUserId={userId}
+              userId={comment.userId}
+              username={comment.username}
+              body={comment.body}
+              handleCommentDelete={() => handleCommentDelete(comment)}
+            />
           ))
         ) : (
           <p className="text-slate-500 italic">

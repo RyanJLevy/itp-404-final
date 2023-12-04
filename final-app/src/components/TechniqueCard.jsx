@@ -11,6 +11,7 @@ export default function TechniqueCard(props) {
       onMouseOver={() => setIsHover(true)}
       onMouseOut={() => setIsHover(false)}
       to={`/details/${props.slug}`}
+      data-testid="test-technique-card"
     >
       {/* Overlay displayed on hover with additional info */}
       <div
@@ -24,10 +25,14 @@ export default function TechniqueCard(props) {
               <p className="text-white">
                 <span className="text-slate-300">Difficulty:</span>
               </p>
-              <StarRating rating={props.difficulty} size={"1x"} />
+              <StarRating
+                data-testid="test-stars"
+                rating={props.difficulty}
+                size={"1x"}
+              />
             </div>
 
-            <p className="text-white">
+            <p className="text-white" data-testid={"test-type"}>
               <span className="text-slate-300">Move type:</span>{" "}
               {props.type.join(", ")}
             </p>
@@ -37,13 +42,16 @@ export default function TechniqueCard(props) {
 
       {/* Technique title */}
       <div className="w-full absolute top-0 left-0 z-50 p-4 bg-white bg-opacity-80 rounded-tr-sm rounded-tl-sm">
-        <h1 className="text-lg md:text-3xl">{props.title}</h1>
+        <h1 className="text-lg md:text-3xl" data-testid={"title"}>
+          {props.title}
+        </h1>
       </div>
       <div className="object-contain overflow-hidden rounded-md">
         <img
           className={`${isHover && "scale-110"} duration-500 ease-in-out`}
           src={`/assets/techniques/${props.image}`}
           alt={props.title}
+          data-testid="image"
         />
       </div>
     </Link>

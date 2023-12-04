@@ -7,12 +7,15 @@ export default function StarRating(props) {
   for (let i = 1; i <= maxDifficultyRating; i++) {
     const isStarFilled = i <= props.rating;
     stars.push(
-      <FontAwesomeIcon
-        key={i}
-        icon={faStar}
-        color={isStarFilled ? "#f9c74f" : "#eee"}
-        size={props.size}
-      />
+      <div data-testid={"test-star"}>
+        <FontAwesomeIcon
+          key={i}
+          icon={faStar}
+          color={isStarFilled ? "#f9c74f" : "#eee"}
+          size={props.size}
+          data-testid={isStarFilled ? "test-filled-star" : "test-empty-star"}
+        />
+      </div>
     );
   }
   return <div className="flex md:justify-center items-center">{stars}</div>;
