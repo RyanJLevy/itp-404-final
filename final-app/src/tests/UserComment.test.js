@@ -5,6 +5,7 @@ const commentData = {
   body: "Test comment",
   userId: 1,
   username: "testuser",
+  date: "3-12-2024",
 };
 
 test("rendering user comment", () => {
@@ -15,6 +16,7 @@ test("rendering user comment", () => {
       userId={commentData.userId}
       username={commentData.username}
       body={commentData.body}
+      date={commentData.date}
       handleCommentDelete={() => {}}
     />
   );
@@ -30,6 +32,7 @@ test("rendering logged in user comment displays correct icon", () => {
       userId={commentData.userId}
       username={commentData.username}
       body={commentData.body}
+      date={commentData.date}
       handleCommentDelete={() => {}}
     />
   );
@@ -44,6 +47,7 @@ test("rendering another user comment displays correct icon", () => {
       userId={commentData.userId}
       username={commentData.username}
       body={commentData.body}
+      date={commentData.date}
       handleCommentDelete={() => {}}
     />
   );

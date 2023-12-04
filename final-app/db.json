@@ -99,17 +99,11 @@
   "comments": [
     {
       "techniqueId": 0,
-      "body": "KNEEEE BAAAARRRR",
-      "userId": 1,
-      "username": "climberjoe",
+      "body": "Really cool move!",
+      "userId": 2,
+      "username": "admin",
+      "date": "12-3-2023",
       "id": 1
-    },
-    {
-      "techniqueId": 2,
-      "body": "Been training these with a home hang-board set! Highly recommend!",
-      "userId": 1,
-      "username": "climberjoe",
-      "id": 2
     }
   ]
 }

@@ -24,11 +24,18 @@ export default function Details() {
       return;
     }
     const { username } = await fetchUserById(userId);
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const currentDate = `${month}-${day}-${year}`;
+
     const commentData = {
       techniqueId: techniqueData.id,
       body: userComment.trim(),
       userId: userId,
       username: username,
+      date: currentDate,
     };
     const newComment = await postComment(commentData);
     setAllComments((prev) => [...prev, newComment]);
@@ -144,6 +151,7 @@ export default function Details() {
               userId={comment.userId}
               username={comment.username}
               body={comment.body}
+              date={comment.date}
               handleCommentDelete={() => handleCommentDelete(comment)}
             />
           ))

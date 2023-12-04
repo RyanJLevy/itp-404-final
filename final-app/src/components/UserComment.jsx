@@ -17,16 +17,19 @@ export default function UserComment(props) {
         <p className="text-slate-500">{props.username}</p>
         <p>{props.body}</p>
       </div>
-      {props.userId === props.loggedInUserId && (
-        <button
-          type="button"
-          className=" text-secondary hover:text-dark-secondary"
-          onClick={props.handleCommentDelete}
-          title="Delete comment"
-        >
-          <FontAwesomeIcon icon={faTrash} />
-        </button>
-      )}
+      <div className="flex justify-end items-center space-x-4">
+        <p className="text-slate-500">{props.date}</p>
+        {props.userId === props.loggedInUserId && (
+          <button
+            type="button"
+            className=" text-secondary hover:text-dark-secondary"
+            onClick={props.handleCommentDelete}
+            title="Delete comment"
+          >
+            <FontAwesomeIcon icon={faTrash} />
+          </button>
+        )}
+      </div>
     </div>
   );
 }

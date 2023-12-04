@@ -28,10 +28,11 @@ export default function Profile() {
             {loaderData.comments.length ? (
               loaderData.comments.map((comment) => (
                 <div
-                  className="p-4 border-b border-b-slate-300"
+                  className="p-4 border-b border-b-slate-300 flex items-center space-x-4"
                   key={comment.id}
                 >
-                  {comment.body}
+                  <p className="text-slate-500">{comment.date}</p>
+                  <p>{comment.body}</p>
                 </div>
               ))
             ) : (
